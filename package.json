@@ -1,0 +1,16 @@
+{
+  "name": "ppt-local",
+  "version": "1.0.0",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^2.15.4"
+  },
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html",
+    "deploy": "gh-pages -d ./dist"
+  },
+  "dependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}
