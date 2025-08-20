@@ -150,13 +150,13 @@ export function initJuego(params: { goTo: (arg: string) => void }) {
       <h3 class="elige">Elige tu jugada antes de que se termina el tiempo!</h3>
       <div class="container-manos">
         <button class="general">
-          <img class="piedra" src="/ppt-local/assets/piedra.svg" alt="" />
+          <img class="piedra" src="/assets/piedra.svg" alt="" />
         </button>
         <button class="general" >
-          <img class="papel" src="/ppt-local/assets/papel.svg" alt="" />
+          <img class="papel" src="/assets/papel.svg" alt="" />
         </button>
         <button class="general" >
-          <img class="tijera" src="/ppt-local/assets/tijera.svg" alt="" />
+          <img class="tijera" src="/assets/tijera.svg" alt="" />
         </button>
       </div>
       <div class="my-score">Jugador: <span></span></div>
@@ -164,11 +164,11 @@ export function initJuego(params: { goTo: (arg: string) => void }) {
     </div>
     <div class="secundario">
       <div class="div-img-maquina">
-        <img class="imagen-maquina" src="/ppt-local/assets/papel.svg" alt="" />
+        <img class="imagen-maquina" src="/assets/papel.svg" alt="" />
       </div>
       
       <div class="div-img-jugador">
-        <img class="imagen-jugador" src="/ppt-local/assets/papel.svg" alt="" />
+        <img class="imagen-jugador" src="/assets/papel.svg" alt="" />
       </div>
     </div>
   `;
@@ -211,8 +211,8 @@ function handleMoveSelection(jugada: Move) {
   state.setMoves(jugada);
   const pcMove = state.data.currentGame.pcMove;
 
-  imagenPc.src = `/ppt-local/assets/${pcMove}.svg`;
-  imagenJugador.src = `/ppt-local/assets/${jugada}.svg`;
+  imagenPc.src = `/assets/${pcMove}.svg`;
+  imagenJugador.src = `/assets/${jugada}.svg`;
   state.playGame(jugada);
 
   const botones = divEl.querySelectorAll(

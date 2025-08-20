@@ -51,9 +51,9 @@ export function initInstrucciones(params: { goTo: (arg: string) => void }) {
         <button-el>Jugar!</button-el>
       </div>
       <div class="container-manos">
-        <img src="/ppt-local/assets/papel.svg"/>
-        <img src="/ppt-local/assets/piedra.svg"/>
-        <img src="/ppt-local/assets/tijera.svg"/>
+        <img src="/assets/papel.svg"/>
+        <img src="/assets/piedra.svg"/>
+        <img src="/assets/tijera.svg"/>
       </div>
   </div>
   `;
