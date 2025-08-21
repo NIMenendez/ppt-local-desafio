@@ -908,12 +908,12 @@ class TextEl extends HTMLElement {
 customElements.define("text-el", TextEl);
 
 },{}],"4wVP1":[function(require,module,exports,__globalThis) {
-// Importar las páginas aquí
+// Importar las páginas
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-// Inicializa el router
 parcelHelpers.export(exports, "initRouter", ()=>initRouter);
-var _inicio = require("./pages/inicio/inicio"); // Asegúrate de que la ruta sea correcta
+parcelHelpers.export(exports, "goTo", ()=>goTo);
+var _inicio = require("./pages/inicio/inicio");
 var _instruccionesTs = require("./pages/instrucciones/instrucciones.ts");
 var _juegoTs = require("./pages/juego/juego.ts");
 var _resultadoTs = require("./pages/resultado/resultado.ts");
@@ -956,15 +956,25 @@ const routes = [
         }
     }
 ];
-// Función para renderizar el contenido en base al path actual.
+// Función para navegar
 function goTo(path) {
-    const completePath = isGithubPages() ? BASE_PATH + path : path;
+    const normalizedPath = path.startsWith("/") ? path : "/" + path;
+    const completePath = isGithubPages() ? BASE_PATH + normalizedPath : normalizedPath;
     history.pushState({}, "", completePath);
     renderPath(completePath);
 }
+// Función para renderizar según la ruta
 function renderPath(path) {
-    const adjustedPath = isGithubPages() ? path.replace(BASE_PATH, "") : path;
-    const route = routes.find((route)=>route.pathRegex.test(adjustedPath));
+    let adjustedPath = path;
+    if (isGithubPages()) {
+        // Quitar BASE_PATH al inicio
+        if (adjustedPath.startsWith(BASE_PATH)) adjustedPath = adjustedPath.slice(BASE_PATH.length);
+        // Asegurar slash inicial
+        if (!adjustedPath.startsWith("/")) adjustedPath = "/" + adjustedPath;
+    }
+    // Quitar trailing slash
+    adjustedPath = adjustedPath.replace(/\/$/, "");
+    const route = routes.find((r)=>r.pathRegex.test(adjustedPath));
     if (route) {
         const app = document.getElementById("app");
         if (app) {
@@ -975,16 +985,14 @@ function renderPath(path) {
         }
     } else console.warn(`El path '${adjustedPath}' no fue encontrado.`);
 }
-// Inicializa el router
-if (location.pathname.replace(/\/$/, "") == BASE_PATH) goTo("/inicio");
-else renderPath(location.pathname);
-// Escucha el evento popstate
-window.addEventListener("popstate", ()=>{
-    renderPath(location.pathname);
-});
-function initRouter(rootEl) {
-    const initialPath = window.location.pathname;
-    renderPath(initialPath);
+// Inicializa router al cargar la página
+function initRouter() {
+    const pathname = location.pathname.replace(/\/$/, "");
+    if (isGithubPages() && (pathname === BASE_PATH || pathname === BASE_PATH + "/")) goTo("/inicio");
+    else if (!isGithubPages() && (pathname === "" || pathname === "/")) goTo("/inicio");
+    else renderPath(pathname);
+    // Escucha cambios del historial
+    window.addEventListener("popstate", ()=>renderPath(location.pathname));
 }
 
 },{"./pages/inicio/inicio":"kVWoQ","./pages/instrucciones/instrucciones.ts":"fTLuP","./pages/juego/juego.ts":"ahAK2","./pages/resultado/resultado.ts":"9tUjq","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"kVWoQ":[function(require,module,exports,__globalThis) {
@@ -1050,9 +1058,9 @@ function initHome(params) {
 <button-el>Empezar!</button-el>
 </div>
 <div class="container-manos">
-  <img src="/ppt-local/assets/papel.svg" alt="" />
-  <img src="/ppt-local/assets/piedra.svg" alt="" />
-  <img src="/ppt-local/assets/tijera.svg" alt="" />
+  <img src="./assets/papel.svg" alt="" />
+  <img src="./assets/piedra.svg" alt="" />
+  <img src="./assets/tijera.svg" alt="" />
 </div>
 </div>
   `;
@@ -1149,9 +1157,9 @@ function initInstrucciones(params) {
         <button-el>Jugar!</button-el>
       </div>
       <div class="container-manos">
-        <img src="/ppt-local/assets/papel.svg"/>
-        <img src="/ppt-local/assets/piedra.svg"/>
-        <img src="/ppt-local/assets/tijera.svg"/>
+        <img src="./assets/papel.svg"/>
+        <img src="./assets/piedra.svg"/>
+        <img src="./assets/tijera.svg"/>
       </div>
   </div>
   `;
@@ -1430,13 +1438,13 @@ function initJuego(params) {
       <h3 class="elige">Elige tu jugada antes de que se termina el tiempo!</h3>
       <div class="container-manos">
         <button class="general">
-          <img class="piedra" src="/ppt-local/assets/piedra.svg" alt="" />
+          <img class="piedra" src="./assets/piedra.svg" alt="" />
         </button>
         <button class="general" >
-          <img class="papel" src="/ppt-local/assets/papel.svg" alt="" />
+          <img class="papel" src="./assets/papel.svg" alt="" />
         </button>
         <button class="general" >
-          <img class="tijera" src="/ppt-local/assets/tijera.svg" alt="" />
+          <img class="tijera" src="./assets/tijera.svg" alt="" />
         </button>
       </div>
       <div class="my-score">Jugador: <span></span></div>
@@ -1444,11 +1452,11 @@ function initJuego(params) {
     </div>
     <div class="secundario">
       <div class="div-img-maquina">
-        <img class="imagen-maquina" src="/ppt-local/assets/papel.svg" alt="" />
+        <img class="imagen-maquina" src="./assets/papel.svg" alt="" />
       </div>
       
       <div class="div-img-jugador">
-        <img class="imagen-jugador" src="/ppt-local/assets/papel.svg" alt="" />
+        <img class="imagen-jugador" src="./assets/papel.svg" alt="" />
       </div>
     </div>
   `;
@@ -1478,8 +1486,8 @@ function initJuego(params) {
     function handleMoveSelection(jugada) {
         (0, _stateTs.state).setMoves(jugada);
         const pcMove = (0, _stateTs.state).data.currentGame.pcMove;
-        imagenPc.src = `/ppt-local/assets/${pcMove}.svg`;
-        imagenJugador.src = `/ppt-local/assets/${jugada}.svg`;
+        imagenPc.src = `../public/${pcMove}.svg`;
+        imagenJugador.src = `../public/${jugada}.svg`;
         (0, _stateTs.state).playGame(jugada);
         const botones = divEl.querySelectorAll(".general");
         botones.forEach((boton)=>boton.classList.remove("active"));

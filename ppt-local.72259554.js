@@ -74,7 +74,7 @@ class e extends HTMLElement{static get style(){return`
       <div class="estrella2"></div>
       <h3 class="estrella-text">Ganaste!</h3>
     </div>
-    `,this.hasAttribute("invertida")){let e=this.shadowRoot.querySelector(".estrella"),t=this.shadowRoot.querySelector(".estrella2"),a=this.shadowRoot.querySelector(".estrella-text");e.setAttribute("class","estrella estrella-invertida"),t.setAttribute("class","estrella2 estrella-invertida2"),a.textContent="Perdiste!"}}}customElements.define("estrella-el",e);class t extends HTMLElement{static get style(){return`
+    `,this.hasAttribute("invertida")){let e=this.shadowRoot.querySelector(".estrella"),t=this.shadowRoot.querySelector(".estrella2"),r=this.shadowRoot.querySelector(".estrella-text");e.setAttribute("class","estrella estrella-invertida"),t.setAttribute("class","estrella2 estrella-invertida2"),r.textContent="Perdiste!"}}}customElements.define("estrella-el",e);class t extends HTMLElement{static get style(){return`
     button {
         font-family: var(--fuente-odibee);
         font-size: 3rem;
@@ -96,7 +96,7 @@ class e extends HTMLElement{static get style(){return`
     <style>${t.style}</style>
     <button class="${e}"><slot></slot></button>
 
-    `}}customElements.define("button-el",t);class a extends HTMLElement{static get style(){return`
+    `}}customElements.define("button-el",t);class r extends HTMLElement{static get style(){return`
     .container {
         box-sizing: border-box;
         font-family: var(--fuente-odibee);
@@ -133,7 +133,7 @@ class e extends HTMLElement{static get style(){return`
         letter-spacing: 0.5rem;
       }
     `}constructor(){super(),this.attachShadow({mode:"open"})}connectedCallback(){this.shadowRoot.innerHTML=`
-    <style>${a.style}</style>
+    <style>${r.style}</style>
     <div class="container">
       <h3>Score</h3>
       <div class="container-p">
@@ -141,7 +141,7 @@ class e extends HTMLElement{static get style(){return`
         <p class="p-pc">PC: 3</p>
       </div>
     </div>
-    `}}customElements.define("score-el",a);class r extends HTMLElement{static get style(){return""}constructor(){super(),this.tags=["h1","p"],this.tag="p",this.attachShadow({mode:"open"}),this.tags.includes(this.getAttribute("tag"))&&(this.tag=this.getAttribute("tag")||this.tag),console.log(this.tag),this.render()}render(){let e=document.createElement(this.tag);e.textContent=this.textContent,this.shadowRoot.append(e)}}customElements.define("text-el",r);const o={data:{currentGame:{clientMove:null,pcMove:null},historyByTurn:[],scores:{myScore:0,pcScore:0}},subscribers:[],subscribe(e){this.subscribers.push(e)},getState(){return this.data},setState(e){this.data={...this.data,...e,currentGame:{...this.data.currentGame,...e.currentGame||{}},scores:{...this.data.scores,...e.scores||{}}},this.subscribers.forEach(e=>e(this.data)),this.saveToLocalStorage()},setMoves(e){let t=this.getRandomMove();this.setState({currentGame:{clientMove:e,pcMove:t}})},getRandomMove(){let e=["rock","paper","scissors"];return e[Math.floor(Math.random()*e.length)]},pushToHistory(e){let t=[...this.data.historyByTurn,e];this.setState({historyByTurn:t})},getWinner:(e,t)=>e===t?"tie":({rock:"scissors",paper:"rock",scissors:"paper"})[e]===t?"clientWins":"pcWins",playGame(e){if(null===this.data.currentGame.pcMove)return;let t=this.getWinner(e,this.data.currentGame.pcMove);"clientWins"===t?this.setState({scores:{myScore:this.data.scores.myScore+1}}):"pcWins"===t&&this.setState({scores:{pcScore:this.data.scores.pcScore+1}})},saveToLocalStorage(){localStorage.setItem("gameState",JSON.stringify(this.data))},loadFromLocalStorage(){let e=localStorage.getItem("gameState");e&&(this.data=JSON.parse(e),this.subscribers.forEach(e=>e(this.data)))},resetScores(){this.setState({scores:{myScore:0,pcScore:0}})}},n="/ppt-local-desafio";function i(){return location.host.includes("github.io")}const s=[{pathRegex:/^\/inicio$/,render:()=>(function(e){let t=document.createElement("div");t.innerHTML=`
+    `}}customElements.define("score-el",r);class a extends HTMLElement{static get style(){return""}constructor(){super(),this.tags=["h1","p"],this.tag="p",this.attachShadow({mode:"open"}),this.tags.includes(this.getAttribute("tag"))&&(this.tag=this.getAttribute("tag")||this.tag),console.log(this.tag),this.render()}render(){let e=document.createElement(this.tag);e.textContent=this.textContent,this.shadowRoot.append(e)}}customElements.define("text-el",a);const o={data:{currentGame:{clientMove:null,pcMove:null},historyByTurn:[],scores:{myScore:0,pcScore:0}},subscribers:[],subscribe(e){this.subscribers.push(e)},getState(){return this.data},setState(e){this.data={...this.data,...e,currentGame:{...this.data.currentGame,...e.currentGame||{}},scores:{...this.data.scores,...e.scores||{}}},this.subscribers.forEach(e=>e(this.data)),this.saveToLocalStorage()},setMoves(e){let t=this.getRandomMove();this.setState({currentGame:{clientMove:e,pcMove:t}})},getRandomMove(){let e=["rock","paper","scissors"];return e[Math.floor(Math.random()*e.length)]},pushToHistory(e){let t=[...this.data.historyByTurn,e];this.setState({historyByTurn:t})},getWinner:(e,t)=>e===t?"tie":({rock:"scissors",paper:"rock",scissors:"paper"})[e]===t?"clientWins":"pcWins",playGame(e){if(null===this.data.currentGame.pcMove)return;let t=this.getWinner(e,this.data.currentGame.pcMove);"clientWins"===t?this.setState({scores:{myScore:this.data.scores.myScore+1}}):"pcWins"===t&&this.setState({scores:{pcScore:this.data.scores.pcScore+1}})},saveToLocalStorage(){localStorage.setItem("gameState",JSON.stringify(this.data))},loadFromLocalStorage(){let e=localStorage.getItem("gameState");e&&(this.data=JSON.parse(e),this.subscribers.forEach(e=>e(this.data)))},resetScores(){this.setState({scores:{myScore:0,pcScore:0}})}},n="/ppt-local-desafio";function i(){return location.host.includes("github.io")}const s=[{pathRegex:/^\/inicio$/,render:()=>(function(e){let t=document.createElement("div");t.innerHTML=`
   <style>
   .contenedor{
     display: flex;
@@ -197,12 +197,12 @@ class e extends HTMLElement{static get style(){return`
 <button-el>Empezar!</button-el>
 </div>
 <div class="container-manos">
-  <img src="/ppt-local/assets/papel.svg" alt="" />
-  <img src="/ppt-local/assets/piedra.svg" alt="" />
-  <img src="/ppt-local/assets/tijera.svg" alt="" />
+  <img src="./assets/papel.svg" alt="" />
+  <img src="./assets/piedra.svg" alt="" />
+  <img src="./assets/tijera.svg" alt="" />
 </div>
 </div>
-  `;let a=t.querySelector("button-el");return a?.addEventListener("click",()=>{e.goTo("/instrucciones")}),t})({goTo:l})},{pathRegex:/^\/instrucciones$/,render:()=>(function(e){let t=document.createElement("div");t.innerHTML=`
+  `;let r=t.querySelector("button-el");return r?.addEventListener("click",()=>{e.goTo("/instrucciones")}),t})({goTo:l})},{pathRegex:/^\/instrucciones$/,render:()=>(function(e){let t=document.createElement("div");t.innerHTML=`
   <style>
     .container {
       height: auto;
@@ -251,12 +251,12 @@ class e extends HTMLElement{static get style(){return`
         <button-el>Jugar!</button-el>
       </div>
       <div class="container-manos">
-        <img src="/ppt-local/assets/papel.svg"/>
-        <img src="/ppt-local/assets/piedra.svg"/>
-        <img src="/ppt-local/assets/tijera.svg"/>
+        <img src="./assets/papel.svg"/>
+        <img src="./assets/piedra.svg"/>
+        <img src="./assets/tijera.svg"/>
       </div>
   </div>
-  `;let a=t.querySelector("button-el");return o.data.scores.pcScore=0,o.data.scores.myScore=0,a?.addEventListener("click",()=>{e.goTo("/juego")}),t})({goTo:l})},{pathRegex:/^\/juego$/,render:()=>(function(e){let t=document.createElement("div");t.innerHTML=`
+  `;let r=t.querySelector("button-el");return o.data.scores.pcScore=0,o.data.scores.myScore=0,r?.addEventListener("click",()=>{e.goTo("/juego")}),t})({goTo:l})},{pathRegex:/^\/juego$/,render:()=>(function(e){let t=document.createElement("div");t.innerHTML=`
     <style>
       /* Estilos como los que ten\xedas anteriormente */
       .principal {
@@ -404,13 +404,13 @@ class e extends HTMLElement{static get style(){return`
       <h3 class="elige">Elige tu jugada antes de que se termina el tiempo!</h3>
       <div class="container-manos">
         <button class="general">
-          <img class="piedra" src="/ppt-local/assets/piedra.svg" alt="" />
+          <img class="piedra" src="./assets/piedra.svg" alt="" />
         </button>
         <button class="general" >
-          <img class="papel" src="/ppt-local/assets/papel.svg" alt="" />
+          <img class="papel" src="./assets/papel.svg" alt="" />
         </button>
         <button class="general" >
-          <img class="tijera" src="/ppt-local/assets/tijera.svg" alt="" />
+          <img class="tijera" src="./assets/tijera.svg" alt="" />
         </button>
       </div>
       <div class="my-score">Jugador: <span></span></div>
@@ -418,14 +418,14 @@ class e extends HTMLElement{static get style(){return`
     </div>
     <div class="secundario">
       <div class="div-img-maquina">
-        <img class="imagen-maquina" src="/ppt-local/assets/papel.svg" alt="" />
+        <img class="imagen-maquina" src="./assets/papel.svg" alt="" />
       </div>
       
       <div class="div-img-jugador">
-        <img class="imagen-jugador" src="/ppt-local/assets/papel.svg" alt="" />
+        <img class="imagen-jugador" src="./assets/papel.svg" alt="" />
       </div>
     </div>
-  `;let a=t.querySelector(".container-manos button img.piedra"),r=t.querySelector(".container-manos button img.papel"),n=t.querySelector(".container-manos button img.tijera"),i=t.querySelector(".principal"),s=t.querySelector(".secundario"),l=t.querySelector(".imagen-maquina"),c=t.querySelector(".imagen-jugador"),p=t.querySelector(".my-score span"),d=t.querySelector(".computer-score span");o.subscribe(()=>{let e=o.getState();p.textContent=e.scores.myScore.toString(),d.textContent=e.scores.pcScore.toString()});let g=o.getState();function u(e){o.setMoves(e);let a=o.data.currentGame.pcMove;l.src=`/ppt-local/assets/${a}.svg`,c.src=`/ppt-local/assets/${e}.svg`,o.playGame(e);let r=t.querySelectorAll(".general");r.forEach(e=>e.classList.remove("active"));let n=t.querySelector(`.general img.${e}`)?.parentElement;n&&n.classList.add("active"),r.forEach(e=>{e.disabled=!0,e.style.pointerEvents="none"})}p.textContent=g.scores.myScore.toString(),d.textContent=g.scores.pcScore.toString(),setTimeout(()=>{let t=o.getState();2==t.scores.pcScore||2==t.scores.myScore?e.goTo("/resultado"):e.goTo("/juego")},5e3),a.addEventListener("click",()=>u("rock")),r.addEventListener("click",()=>u("paper")),n.addEventListener("click",()=>u("scissors"));let m=setInterval(function(){let e=document.querySelector(".inner-box"),t=Number(e.innerText);t>-2&&(e.innerText=(t-1).toString()),t<=0&&(s.style.display="flex",i.style.display="none",clearInterval(m))},1e3);return t})({goTo:l})},{pathRegex:/^\/resultado$/,render:()=>(function(e){let t,a=document.createElement("div");a.innerHTML=`
+  `;let r=t.querySelector(".container-manos button img.piedra"),a=t.querySelector(".container-manos button img.papel"),n=t.querySelector(".container-manos button img.tijera"),i=t.querySelector(".principal"),s=t.querySelector(".secundario"),l=t.querySelector(".imagen-maquina"),c=t.querySelector(".imagen-jugador"),d=t.querySelector(".my-score span"),p=t.querySelector(".computer-score span");o.subscribe(()=>{let e=o.getState();d.textContent=e.scores.myScore.toString(),p.textContent=e.scores.pcScore.toString()});let g=o.getState();function u(e){o.setMoves(e);let r=o.data.currentGame.pcMove;l.src=`../public/${r}.svg`,c.src=`../public/${e}.svg`,o.playGame(e);let a=t.querySelectorAll(".general");a.forEach(e=>e.classList.remove("active"));let n=t.querySelector(`.general img.${e}`)?.parentElement;n&&n.classList.add("active"),a.forEach(e=>{e.disabled=!0,e.style.pointerEvents="none"})}d.textContent=g.scores.myScore.toString(),p.textContent=g.scores.pcScore.toString(),setTimeout(()=>{let t=o.getState();2==t.scores.pcScore||2==t.scores.myScore?e.goTo("/resultado"):e.goTo("/juego")},5e3),r.addEventListener("click",()=>u("rock")),a.addEventListener("click",()=>u("paper")),n.addEventListener("click",()=>u("scissors"));let h=setInterval(function(){let e=document.querySelector(".inner-box"),t=Number(e.innerText);t>-2&&(e.innerText=(t-1).toString()),t<=0&&(s.style.display="flex",i.style.display="none",clearInterval(h))},1e3);return t})({goTo:l})},{pathRegex:/^\/resultado$/,render:()=>(function(e){let t,r=document.createElement("div");r.innerHTML=`
   <style>.ganaste {
   /* display: none; */
   height: 100vh;
@@ -546,5 +546,5 @@ class e extends HTMLElement{static get style(){return`
 
   
 </div>
-  `,a.querySelector("button-el").addEventListener("click",()=>{e.goTo("/inicio")}),a.querySelector(".volver-jugar").addEventListener("click",()=>{e.goTo("/inicio")});let r=o.getState();a.querySelector(".p-persona").textContent=`Vos: ${r.scores.myScore}`,a.querySelector(".p-maquina").textContent=`Maquina: ${r.scores.pcScore}`,a.querySelector(".parrafo-persona").textContent=`Vos: ${r.scores.myScore}`,a.querySelector(".parrafo-maquina").textContent=`Maquina: ${r.scores.pcScore}`,t=!(r.scores.pcScore>r.scores.myScore);let n=a.querySelector(".ganaste"),i=a.querySelector(".perdiste");return t?(n.style.display="flex",i.style.display="none"):(n.style.display="none",i.style.display="flex"),a})({goTo:l})},{pathRegex:/.*/,render:()=>{let e=document.createElement("div");return e.innerHTML="<h1>404 - Página no encontrada</h1>",e}}];function l(e){let t=i()?n+e:e;history.pushState({},"",t),c(t)}function c(e){let t=i()?e.replace(n,""):e,a=s.find(e=>e.pathRegex.test(t));if(a){let e=document.getElementById("app");e&&(e.innerHTML="",e.appendChild(a.render({goTo:l})))}else console.warn(`El path '${t}' no fue encontrado.`)}if(location.pathname.replace(/\/$/,"")==n?l("/inicio"):c(location.pathname),window.addEventListener("popstate",()=>{c(location.pathname)}),!document.querySelector("#app"))throw Error("Elemento #app no encontrado");c(window.location.pathname);
-//# sourceMappingURL=ppt-local.cb6388a2.js.map
+  `,r.querySelector("button-el").addEventListener("click",()=>{e.goTo("/inicio")}),r.querySelector(".volver-jugar").addEventListener("click",()=>{e.goTo("/inicio")});let a=o.getState();r.querySelector(".p-persona").textContent=`Vos: ${a.scores.myScore}`,r.querySelector(".p-maquina").textContent=`Maquina: ${a.scores.pcScore}`,r.querySelector(".parrafo-persona").textContent=`Vos: ${a.scores.myScore}`,r.querySelector(".parrafo-maquina").textContent=`Maquina: ${a.scores.pcScore}`,t=!(a.scores.pcScore>a.scores.myScore);let n=r.querySelector(".ganaste"),i=r.querySelector(".perdiste");return t?(n.style.display="flex",i.style.display="none"):(n.style.display="none",i.style.display="flex"),r})({goTo:l})},{pathRegex:/.*/,render:()=>{let e=document.createElement("div");return e.innerHTML="<h1>404 - Página no encontrada</h1>",e}}];function l(e){let t=e.startsWith("/")?e:"/"+e,r=i()?n+t:t;history.pushState({},"",r),c(r)}function c(e){let t=e;i()&&(t.startsWith(n)&&(t=t.slice(n.length)),t.startsWith("/")||(t="/"+t)),t=t.replace(/\/$/,"");let r=s.find(e=>e.pathRegex.test(t));if(r){let e=document.getElementById("app");e&&(e.innerHTML="",e.appendChild(r.render({goTo:l})))}else console.warn(`El path '${t}' no fue encontrado.`)}if(!document.querySelector("#app"))throw Error("Elemento #app no encontrado");const d=location.pathname.replace(/\/$/,"");i()&&(d===n||d===n+"/")?l("/inicio"):i()||""!==d&&"/"!==d?c(d):l("/inicio"),window.addEventListener("popstate",()=>c(location.pathname));
+//# sourceMappingURL=ppt-local.72259554.js.map
