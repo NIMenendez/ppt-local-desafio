@@ -141,7 +141,7 @@ class e extends HTMLElement{static get style(){return`
         <p class="p-pc">PC: 3</p>
       </div>
     </div>
-    `}}customElements.define("score-el",r);class a extends HTMLElement{static get style(){return""}constructor(){super(),this.tags=["h1","p"],this.tag="p",this.attachShadow({mode:"open"}),this.tags.includes(this.getAttribute("tag"))&&(this.tag=this.getAttribute("tag")||this.tag),console.log(this.tag),this.render()}render(){let e=document.createElement(this.tag);e.textContent=this.textContent,this.shadowRoot.append(e)}}customElements.define("text-el",a);const o={data:{currentGame:{clientMove:null,pcMove:null},historyByTurn:[],scores:{myScore:0,pcScore:0}},subscribers:[],subscribe(e){this.subscribers.push(e)},getState(){return this.data},setState(e){this.data={...this.data,...e,currentGame:{...this.data.currentGame,...e.currentGame||{}},scores:{...this.data.scores,...e.scores||{}}},this.subscribers.forEach(e=>e(this.data)),this.saveToLocalStorage()},setMoves(e){let t=this.getRandomMove();this.setState({currentGame:{clientMove:e,pcMove:t}})},getRandomMove(){let e=["rock","paper","scissors"];return e[Math.floor(Math.random()*e.length)]},pushToHistory(e){let t=[...this.data.historyByTurn,e];this.setState({historyByTurn:t})},getWinner:(e,t)=>e===t?"tie":({rock:"scissors",paper:"rock",scissors:"paper"})[e]===t?"clientWins":"pcWins",playGame(e){if(null===this.data.currentGame.pcMove)return;let t=this.getWinner(e,this.data.currentGame.pcMove);"clientWins"===t?this.setState({scores:{myScore:this.data.scores.myScore+1}}):"pcWins"===t&&this.setState({scores:{pcScore:this.data.scores.pcScore+1}})},saveToLocalStorage(){localStorage.setItem("gameState",JSON.stringify(this.data))},loadFromLocalStorage(){let e=localStorage.getItem("gameState");e&&(this.data=JSON.parse(e),this.subscribers.forEach(e=>e(this.data)))},resetScores(){this.setState({scores:{myScore:0,pcScore:0}})}},n="/ppt-local-desafio";function i(){return location.host.includes("github.io")}const s=[{pathRegex:/^\/inicio$/,render:()=>(function(e){let t=document.createElement("div");t.innerHTML=`
+    `}}customElements.define("score-el",r);class a extends HTMLElement{static get style(){return""}constructor(){super(),this.tags=["h1","p"],this.tag="p",this.attachShadow({mode:"open"}),this.tags.includes(this.getAttribute("tag"))&&(this.tag=this.getAttribute("tag")||this.tag),console.log(this.tag),this.render()}render(){let e=document.createElement(this.tag);e.textContent=this.textContent,this.shadowRoot.append(e)}}customElements.define("text-el",a);var o={};const n=new URL(o=import.meta.resolve("dVtke")).href;var i={};const s=new URL(i=import.meta.resolve("8r5uV")).href;var l={};const c=new URL(l=import.meta.resolve("6QeWe")).href,d={data:{currentGame:{clientMove:null,pcMove:null},historyByTurn:[],scores:{myScore:0,pcScore:0}},subscribers:[],subscribe(e){this.subscribers.push(e)},getState(){return this.data},setState(e){this.data={...this.data,...e,currentGame:{...this.data.currentGame,...e.currentGame||{}},scores:{...this.data.scores,...e.scores||{}}},this.subscribers.forEach(e=>e(this.data)),this.saveToLocalStorage()},setMoves(e){let t=this.getRandomMove();this.setState({currentGame:{clientMove:e,pcMove:t}})},getRandomMove(){let e=["rock","paper","scissors"];return e[Math.floor(Math.random()*e.length)]},pushToHistory(e){let t=[...this.data.historyByTurn,e];this.setState({historyByTurn:t})},getWinner:(e,t)=>e===t?"tie":({rock:"scissors",paper:"rock",scissors:"paper"})[e]===t?"clientWins":"pcWins",playGame(e){if(null===this.data.currentGame.pcMove)return;let t=this.getWinner(e,this.data.currentGame.pcMove);"clientWins"===t?this.setState({scores:{myScore:this.data.scores.myScore+1}}):"pcWins"===t&&this.setState({scores:{pcScore:this.data.scores.pcScore+1}})},saveToLocalStorage(){localStorage.setItem("gameState",JSON.stringify(this.data))},loadFromLocalStorage(){let e=localStorage.getItem("gameState");e&&(this.data=JSON.parse(e),this.subscribers.forEach(e=>e(this.data)))},resetScores(){this.setState({scores:{myScore:0,pcScore:0}})}},p=new URL(o).href,u=new URL(i).href,g=new URL(l).href,h=new URL(o).href,m=new URL(i).href,x=new URL(l).href,f="/ppt-local-desafio";function v(){return location.host.includes("github.io")}const b=[{pathRegex:/^\/inicio$/,render:()=>(function(e){let t=document.createElement("div");t.innerHTML=`
   <style>
   .contenedor{
     display: flex;
@@ -197,12 +197,12 @@ class e extends HTMLElement{static get style(){return`
 <button-el>Empezar!</button-el>
 </div>
 <div class="container-manos">
-  <img src="./assets/papel.svg" alt="" />
-  <img src="./assets/piedra.svg" alt="" />
-  <img src="./assets/tijera.svg" alt="" />
+  <img src="${n}" alt="Piedra"/>
+  <img src="${s}" alt="Papel"/>
+  <img src="${c}" alt="Tijera"/>
 </div>
 </div>
-  `;let r=t.querySelector("button-el");return r?.addEventListener("click",()=>{e.goTo("/instrucciones")}),t})({goTo:l})},{pathRegex:/^\/instrucciones$/,render:()=>(function(e){let t=document.createElement("div");t.innerHTML=`
+  `;let r=t.querySelector("button-el");return r?.addEventListener("click",()=>{e.goTo("/instrucciones")}),t})({goTo:y})},{pathRegex:/^\/instrucciones$/,render:()=>(function(e){let t=document.createElement("div");t.innerHTML=`
   <style>
     .container {
       height: auto;
@@ -251,14 +251,13 @@ class e extends HTMLElement{static get style(){return`
         <button-el>Jugar!</button-el>
       </div>
       <div class="container-manos">
-        <img src="./assets/papel.svg"/>
-        <img src="./assets/piedra.svg"/>
-        <img src="./assets/tijera.svg"/>
+        <img src="${u}" alt="papel"/>
+        <img src="${p}" alt="piedra"/>
+        <img src="${g}" alt="tijera"/>
       </div>
   </div>
-  `;let r=t.querySelector("button-el");return o.data.scores.pcScore=0,o.data.scores.myScore=0,r?.addEventListener("click",()=>{e.goTo("/juego")}),t})({goTo:l})},{pathRegex:/^\/juego$/,render:()=>(function(e){let t=document.createElement("div");t.innerHTML=`
+  `;let r=t.querySelector("button-el");return d.data.scores.pcScore=0,d.data.scores.myScore=0,r?.addEventListener("click",()=>{e.goTo("/juego")}),t})({goTo:y})},{pathRegex:/^\/juego$/,render:()=>(function(e){let t=document.createElement("div");t.innerHTML=`
     <style>
-      /* Estilos como los que ten\xedas anteriormente */
       .principal {
         display: flex;
         flex-direction: column;
@@ -404,13 +403,13 @@ class e extends HTMLElement{static get style(){return`
       <h3 class="elige">Elige tu jugada antes de que se termina el tiempo!</h3>
       <div class="container-manos">
         <button class="general">
-          <img class="piedra" src="./assets/piedra.svg" alt="" />
+          <img class="piedra" src="${h}" alt="piedra" />
         </button>
         <button class="general" >
-          <img class="papel" src="./assets/papel.svg" alt="" />
+          <img class="papel" src="${m}" alt="papel" />
         </button>
         <button class="general" >
-          <img class="tijera" src="./assets/tijera.svg" alt="" />
+          <img class="tijera" src="${x}" alt="tijera" />
         </button>
       </div>
       <div class="my-score">Jugador: <span></span></div>
@@ -418,14 +417,14 @@ class e extends HTMLElement{static get style(){return`
     </div>
     <div class="secundario">
       <div class="div-img-maquina">
-        <img class="imagen-maquina" src="./assets/papel.svg" alt="" />
+        <img class="imagen-maquina" src="${h}" alt="" />
       </div>
       
       <div class="div-img-jugador">
-        <img class="imagen-jugador" src="./assets/papel.svg" alt="" />
+        <img class="imagen-jugador" src="${m}" alt="" />
       </div>
     </div>
-  `;let r=t.querySelector(".container-manos button img.piedra"),a=t.querySelector(".container-manos button img.papel"),n=t.querySelector(".container-manos button img.tijera"),i=t.querySelector(".principal"),s=t.querySelector(".secundario"),l=t.querySelector(".imagen-maquina"),c=t.querySelector(".imagen-jugador"),d=t.querySelector(".my-score span"),p=t.querySelector(".computer-score span");o.subscribe(()=>{let e=o.getState();d.textContent=e.scores.myScore.toString(),p.textContent=e.scores.pcScore.toString()});let g=o.getState();function u(e){o.setMoves(e);let r=o.data.currentGame.pcMove;l.src=`../public/${r}.svg`,c.src=`../public/${e}.svg`,o.playGame(e);let a=t.querySelectorAll(".general");a.forEach(e=>e.classList.remove("active"));let n=t.querySelector(`.general img.${e}`)?.parentElement;n&&n.classList.add("active"),a.forEach(e=>{e.disabled=!0,e.style.pointerEvents="none"})}d.textContent=g.scores.myScore.toString(),p.textContent=g.scores.pcScore.toString(),setTimeout(()=>{let t=o.getState();2==t.scores.pcScore||2==t.scores.myScore?e.goTo("/resultado"):e.goTo("/juego")},5e3),r.addEventListener("click",()=>u("rock")),a.addEventListener("click",()=>u("paper")),n.addEventListener("click",()=>u("scissors"));let h=setInterval(function(){let e=document.querySelector(".inner-box"),t=Number(e.innerText);t>-2&&(e.innerText=(t-1).toString()),t<=0&&(s.style.display="flex",i.style.display="none",clearInterval(h))},1e3);return t})({goTo:l})},{pathRegex:/^\/resultado$/,render:()=>(function(e){let t,r=document.createElement("div");r.innerHTML=`
+  `;let r=t.querySelector(".container-manos button img.piedra"),a=t.querySelector(".container-manos button img.papel"),o=t.querySelector(".container-manos button img.tijera"),n=t.querySelector(".principal"),i=t.querySelector(".secundario"),s=t.querySelector(".imagen-maquina"),l=t.querySelector(".imagen-jugador"),c=t.querySelector(".my-score span"),p=t.querySelector(".computer-score span");d.subscribe(()=>{let e=d.getState();c.textContent=e.scores.myScore.toString(),p.textContent=e.scores.pcScore.toString()});let u=d.getState();function g(e){d.setMoves(e);let r=d.data.currentGame.pcMove,a={rock:`${h}`,paper:`${m}`,scissors:`${x}`};s.src=a[r],s.alt=r,l.src=a[e],l.alt=e,d.playGame(e);let o=t.querySelectorAll(".general");o.forEach(e=>e.classList.remove("active"));let n=t.querySelector(`.general img.${e}`)?.parentElement;n&&n.classList.add("active"),o.forEach(e=>{e.disabled=!0,e.style.pointerEvents="none"})}c.textContent=u.scores.myScore.toString(),p.textContent=u.scores.pcScore.toString(),setTimeout(()=>{let t=d.getState();2==t.scores.pcScore||2==t.scores.myScore?e.goTo("/resultado"):e.goTo("/juego")},5e3),r.addEventListener("click",()=>g("rock")),a.addEventListener("click",()=>g("paper")),o.addEventListener("click",()=>g("scissors"));let f=setInterval(function(){let e=document.querySelector(".inner-box"),t=Number(e.innerText);t>-2&&(e.innerText=(t-1).toString()),t<=0&&(i.style.display="flex",n.style.display="none",clearInterval(f))},1e3);return t})({goTo:y})},{pathRegex:/^\/resultado$/,render:()=>(function(e){let t,r=document.createElement("div");r.innerHTML=`
   <style>.ganaste {
   /* display: none; */
   height: 100vh;
@@ -546,5 +545,5 @@ class e extends HTMLElement{static get style(){return`
 
   
 </div>
-  `,r.querySelector("button-el").addEventListener("click",()=>{e.goTo("/inicio")}),r.querySelector(".volver-jugar").addEventListener("click",()=>{e.goTo("/inicio")});let a=o.getState();r.querySelector(".p-persona").textContent=`Vos: ${a.scores.myScore}`,r.querySelector(".p-maquina").textContent=`Maquina: ${a.scores.pcScore}`,r.querySelector(".parrafo-persona").textContent=`Vos: ${a.scores.myScore}`,r.querySelector(".parrafo-maquina").textContent=`Maquina: ${a.scores.pcScore}`,t=!(a.scores.pcScore>a.scores.myScore);let n=r.querySelector(".ganaste"),i=r.querySelector(".perdiste");return t?(n.style.display="flex",i.style.display="none"):(n.style.display="none",i.style.display="flex"),r})({goTo:l})},{pathRegex:/.*/,render:()=>{let e=document.createElement("div");return e.innerHTML="<h1>404 - Página no encontrada</h1>",e}}];function l(e){let t=e.startsWith("/")?e:"/"+e,r=i()?n+t:t;history.pushState({},"",r),c(r)}function c(e){let t=e;i()&&(t.startsWith(n)&&(t=t.slice(n.length)),t.startsWith("/")||(t="/"+t)),t=t.replace(/\/$/,"");let r=s.find(e=>e.pathRegex.test(t));if(r){let e=document.getElementById("app");e&&(e.innerHTML="",e.appendChild(r.render({goTo:l})))}else console.warn(`El path '${t}' no fue encontrado.`)}if(!document.querySelector("#app"))throw Error("Elemento #app no encontrado");const d=location.pathname.replace(/\/$/,"");i()&&(d===n||d===n+"/")?l("/inicio"):i()||""!==d&&"/"!==d?c(d):l("/inicio"),window.addEventListener("popstate",()=>c(location.pathname));
-//# sourceMappingURL=ppt-local.72259554.js.map
+  `,r.querySelector("button-el").addEventListener("click",()=>{e.goTo("/inicio")}),r.querySelector(".volver-jugar").addEventListener("click",()=>{e.goTo("/inicio")});let a=d.getState();r.querySelector(".p-persona").textContent=`Vos: ${a.scores.myScore}`,r.querySelector(".p-maquina").textContent=`Maquina: ${a.scores.pcScore}`,r.querySelector(".parrafo-persona").textContent=`Vos: ${a.scores.myScore}`,r.querySelector(".parrafo-maquina").textContent=`Maquina: ${a.scores.pcScore}`,t=!(a.scores.pcScore>a.scores.myScore);let o=r.querySelector(".ganaste"),n=r.querySelector(".perdiste");return t?(o.style.display="flex",n.style.display="none"):(o.style.display="none",n.style.display="flex"),r})({goTo:y})},{pathRegex:/.*/,render:()=>{let e=document.createElement("div");return e.innerHTML="<h1>404 - Página no encontrada</h1>",e}}];function y(e){let t=e.startsWith("/")?e:"/"+e,r=v()?f+t:t;history.pushState({},"",r),S(r)}function S(e){let t=e;v()&&(t.startsWith(f)&&(t=t.slice(f.length)),t.startsWith("/")||(t="/"+t)),t=t.replace(/\/$/,"");let r=b.find(e=>e.pathRegex.test(t));if(r){let e=document.getElementById("app");e&&(e.innerHTML="",e.appendChild(r.render({goTo:y})))}else console.warn(`El path '${t}' no fue encontrado.`)}if(!document.querySelector("#app"))throw Error("Elemento #app no encontrado");const w=location.pathname.replace(/\/$/,"");v()&&(w===f||w===f+"/")?y("/inicio"):v()||""!==w&&"/"!==w?S(w):y("/inicio"),window.addEventListener("popstate",()=>S(location.pathname));
+//# sourceMappingURL=ppt-local.2e51a027.js.map

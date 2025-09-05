@@ -130,7 +130,7 @@
 
   // Only insert newRequire.load when it is actually used.
   // The code in this file is linted against ES5, so dynamic import is not allowed.
-  // INSERT_LOAD_HERE
+  function $parcel$resolve(url) {  url = importMap[url] || url;  return import.meta.resolve(distDir + url);}newRequire.resolve = $parcel$resolve;
 
   Object.defineProperty(newRequire, 'root', {
     get: function () {
@@ -1000,6 +1000,9 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initHome", ()=>initHome);
 var _button = require("../../components/button/button");
+const piedra = new URL(require("bf03a7cd12a72b20")).href;
+const papel = new URL(require("fbf9f7fff7a6e558")).href;
+const tijera = new URL(require("7dbc11fd1d3a12c5")).href;
 function initHome(params) {
     const div = document.createElement("div");
     div.innerHTML = `
@@ -1058,9 +1061,9 @@ function initHome(params) {
 <button-el>Empezar!</button-el>
 </div>
 <div class="container-manos">
-  <img src="./assets/papel.svg" alt="" />
-  <img src="./assets/piedra.svg" alt="" />
-  <img src="./assets/tijera.svg" alt="" />
+  <img src="${piedra}" alt="Piedra"/>
+  <img src="${papel}" alt="Papel"/>
+  <img src="${tijera}" alt="Tijera"/>
 </div>
 </div>
   `;
@@ -1071,7 +1074,7 @@ function initHome(params) {
     return div;
 }
 
-},{"../../components/button/button":"eHuqW","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
+},{"../../components/button/button":"eHuqW","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","bf03a7cd12a72b20":"85XTt","fbf9f7fff7a6e558":"eM0Ao","7dbc11fd1d3a12c5":"c7WxR"}],"jnFvT":[function(require,module,exports,__globalThis) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -1101,11 +1104,23 @@ exports.export = function(dest, destName, get) {
     });
 };
 
+},{}],"85XTt":[function(require,module,exports,__globalThis) {
+module.exports = module.bundle.resolve("piedra.ef826cab.svg") + "?" + Date.now();
+
+},{}],"eM0Ao":[function(require,module,exports,__globalThis) {
+module.exports = module.bundle.resolve("papel.840c6168.svg") + "?" + Date.now();
+
+},{}],"c7WxR":[function(require,module,exports,__globalThis) {
+module.exports = module.bundle.resolve("tijera.ec7cd153.svg") + "?" + Date.now();
+
 },{}],"fTLuP":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initInstrucciones", ()=>initInstrucciones);
 var _stateTs = require("../../state.ts");
+const piedra = new URL(require("7b272971780da529")).href;
+const papel = new URL(require("addf80a08d10f21c")).href;
+const tijera = new URL(require("7e6063e6b778c679")).href;
 function initInstrucciones(params) {
     let div = document.createElement("div");
     div.innerHTML = /*html*/ `
@@ -1157,9 +1172,9 @@ function initInstrucciones(params) {
         <button-el>Jugar!</button-el>
       </div>
       <div class="container-manos">
-        <img src="./assets/papel.svg"/>
-        <img src="./assets/piedra.svg"/>
-        <img src="./assets/tijera.svg"/>
+        <img src="${papel}" alt="papel"/>
+        <img src="${piedra}" alt="piedra"/>
+        <img src="${tijera}" alt="tijera"/>
       </div>
   </div>
   `;
@@ -1172,7 +1187,7 @@ function initInstrucciones(params) {
     return div;
 }
 
-},{"../../state.ts":"dWXvP","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"dWXvP":[function(require,module,exports,__globalThis) {
+},{"../../state.ts":"dWXvP","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","7b272971780da529":"85XTt","addf80a08d10f21c":"eM0Ao","7e6063e6b778c679":"c7WxR"}],"dWXvP":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state);
@@ -1288,11 +1303,13 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initJuego", ()=>initJuego);
 var _stateTs = require("../../state.ts");
+const piedra = new URL(require("d9b087dad97681e4")).href;
+const papel = new URL(require("fa21e446e9ffb8ba")).href;
+const tijera = new URL(require("cc4feb16dd20cd3f")).href;
 function initJuego(params) {
     const divEl = document.createElement("div");
     divEl.innerHTML = /*HTML */ `
     <style>
-      /* Estilos como los que ten\xedas anteriormente */
       .principal {
         display: flex;
         flex-direction: column;
@@ -1438,13 +1455,13 @@ function initJuego(params) {
       <h3 class="elige">Elige tu jugada antes de que se termina el tiempo!</h3>
       <div class="container-manos">
         <button class="general">
-          <img class="piedra" src="./assets/piedra.svg" alt="" />
+          <img class="piedra" src="${piedra}" alt="piedra" />
         </button>
         <button class="general" >
-          <img class="papel" src="./assets/papel.svg" alt="" />
+          <img class="papel" src="${papel}" alt="papel" />
         </button>
         <button class="general" >
-          <img class="tijera" src="./assets/tijera.svg" alt="" />
+          <img class="tijera" src="${tijera}" alt="tijera" />
         </button>
       </div>
       <div class="my-score">Jugador: <span></span></div>
@@ -1452,11 +1469,11 @@ function initJuego(params) {
     </div>
     <div class="secundario">
       <div class="div-img-maquina">
-        <img class="imagen-maquina" src="./assets/papel.svg" alt="" />
+        <img class="imagen-maquina" src="${piedra}" alt="" />
       </div>
       
       <div class="div-img-jugador">
-        <img class="imagen-jugador" src="./assets/papel.svg" alt="" />
+        <img class="imagen-jugador" src="${papel}" alt="" />
       </div>
     </div>
   `;
@@ -1486,8 +1503,15 @@ function initJuego(params) {
     function handleMoveSelection(jugada) {
         (0, _stateTs.state).setMoves(jugada);
         const pcMove = (0, _stateTs.state).data.currentGame.pcMove;
-        imagenPc.src = `../public/${pcMove}.svg`;
-        imagenJugador.src = `../public/${jugada}.svg`;
+        const imagenes = {
+            rock: `${piedra}`,
+            paper: `${papel}`,
+            scissors: `${tijera}`
+        };
+        imagenPc.src = imagenes[pcMove];
+        imagenPc.alt = pcMove;
+        imagenJugador.src = imagenes[jugada];
+        imagenJugador.alt = jugada;
         (0, _stateTs.state).playGame(jugada);
         const botones = divEl.querySelectorAll(".general");
         botones.forEach((boton)=>boton.classList.remove("active"));
@@ -1521,7 +1545,7 @@ function initJuego(params) {
     return divEl;
 }
 
-},{"../../state.ts":"dWXvP","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"9tUjq":[function(require,module,exports,__globalThis) {
+},{"../../state.ts":"dWXvP","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","d9b087dad97681e4":"85XTt","fa21e446e9ffb8ba":"eM0Ao","cc4feb16dd20cd3f":"c7WxR"}],"9tUjq":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initResultado", ()=>initResultado);
@@ -1684,6 +1708,6 @@ function initResultado(params) {
     return divEl;
 }
 
-},{"../../state.ts":"dWXvP","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["3dtlh","gH3Lb"], "gH3Lb", "parcelRequire9dfa", {})
+},{"../../state.ts":"dWXvP","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["3dtlh","gH3Lb"], "gH3Lb", "parcelRequire9dfa", {}, "./", "/")
 
 //# sourceMappingURL=ppt-local.34df32e0.js.map
